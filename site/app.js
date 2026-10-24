@@ -259,6 +259,17 @@ function navState() {
   document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
 }
 
+/* Links to ../docs/*.md resolve on the local server but not on GitHub Pages,
+   which publishes site/ alone. Rewrite them to blob URLs only when hosted there. */
+function fixDocLinks() {
+  if (!location.hostname.endsWith("github.io")) return;
+  const repo = "https://github.com/Elio-AGR/homelab";
+  document.querySelectorAll('a[href^="../"]').forEach((a) => {
+    const rel = a.getAttribute("href").replace(/^\.\.\//, "");
+    a.setAttribute("href", `${repo}/blob/main/${rel}`);
+  });
+}
+
 /* ---------- init ---------- */
 renderFilters();
 renderServices();
@@ -271,4 +282,5 @@ renderChecklist();
 countUp();
 navState();
 observeReveal(document);
+fixDocLinks();
 $("#uptime").textContent = `1d 02h · snapshot ${SNAPSHOT}`;

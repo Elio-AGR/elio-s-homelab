@@ -163,7 +163,8 @@ The interesting part of running a server is the failures. Three are written up i
 ├── systemd/           unit files for the non-container services
 ├── scripts/           backup, restore, healthcheck, port audit, bootstrap
 ├── site/              static portfolio UI (no build step, no CDN)
-├── docs/              architecture, network, runbooks, incidents, security
+├── docs/              architecture, network, runbooks, incidents, security, deploy
+├── .github/workflows/ Pages deploy for site/
 └── Makefile           serve the UI, run the audit, back up
 ```
 
