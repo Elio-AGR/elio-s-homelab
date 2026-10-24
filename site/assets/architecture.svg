@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 780" width="1200" height="780" role="img" aria-label="One Debian host running nine containers and four systemd services, reachable over Tailscale or the local LAN, with no public ports.">
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/></marker>
+<marker id="arrowR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#fb7185"/></marker>
+<marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#22d3ee"/></marker>
+<marker id="arrowV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/></marker>
+</defs>
+<rect width="1200" height="780" fill="#020617"/><rect width="1200" height="780" fill="url(#grid)"/>
+<text x="56" y="46" text-anchor="start" font-size="11" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace" font-weight="700" letter-spacing="3">HOMELAB</text>
+<text x="56" y="64" text-anchor="start" font-size="10" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">One Debian host · nine containers · four systemd units · zero public ports</text>
+<circle cx="1122" cy="42" r="4" fill="#34d399"><animate attributeName="opacity" values="1;0.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
+<text x="1134" y="46" text-anchor="start" font-size="9" fill="#34d399" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">LIVE</text>
+<rect x="56" y="100" width="168" height="56" rx="8" fill="#0b1120"/>
+<rect x="56" y="100" width="168" height="56" rx="8" fill="rgba(30,41,59,0.55)" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="140.0" y="121.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Phone</text>
+<text x="140.0" y="137.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">tailnet, from anywhere</text>
+<rect x="244" y="100" width="168" height="56" rx="8" fill="#0b1120"/>
+<rect x="244" y="100" width="168" height="56" rx="8" fill="rgba(30,41,59,0.55)" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="328.0" y="121.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Laptop</text>
+<text x="328.0" y="137.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">same LAN</text>
+<rect x="432" y="100" width="196" height="56" rx="8" fill="#0b1120"/>
+<rect x="432" y="100" width="196" height="56" rx="8" fill="rgba(136,19,55,0.35)" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4,4"/>
+<text x="530.0" y="121.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Internet scanner</text>
+<text x="530.0" y="137.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">no route in</text>
+<rect x="716" y="100" width="196" height="56" rx="8" fill="#0b1120"/>
+<rect x="716" y="100" width="196" height="56" rx="8" fill="rgba(136,19,55,0.35)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="814.0" y="121.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Tailscale</text>
+<text x="814.0" y="137.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">WireGuard mesh · 26 peers</text>
+<rect x="940" y="100" width="204" height="56" rx="8" fill="#0b1120"/>
+<rect x="940" y="100" width="204" height="56" rx="8" fill="rgba(30,41,59,0.55)" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="1042.0" y="121.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Telegram Bot API</text>
+<text x="1042.0" y="137.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">outbound polling only</text>
+<rect x="56" y="196" width="884" height="404" rx="12" fill="rgba(15,23,42,0.45)" stroke="#334155" stroke-dasharray="8,4"/>
+<text x="72" y="220" text-anchor="start" font-size="10" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace" font-weight="600" letter-spacing="0">HOST · DEBIAN 13 · 4 vCPU / 9.7 GiB / 79 GB SSD</text>
+<rect x="76" y="236" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="76" y="236" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="210.0" y="260.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Gitea</text>
+<text x="210.0" y="276.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">git · :3000 · ssh :222</text>
+<rect x="362" y="236" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="362" y="236" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="496.0" y="260.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Nextcloud</text>
+<text x="496.0" y="276.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">files · calendar · :8080</text>
+<rect x="648" y="236" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="648" y="236" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="782.0" y="260.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Jellyfin</text>
+<text x="782.0" y="276.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">media streaming · :8096</text>
+<rect x="76" y="318" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="76" y="318" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="210.0" y="342.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Uptime Kuma</text>
+<text x="210.0" y="358.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">6 HTTP probes · :3001</text>
+<rect x="362" y="318" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="362" y="318" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="496.0" y="342.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Dashboard</text>
+<text x="496.0" y="358.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">static landing · :8085</text>
+<rect x="648" y="318" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="648" y="318" width="268" height="62" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="782.0" y="342.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Healthcheck</text>
+<text x="782.0" y="358.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">tiny endpoint · :8090</text>
+<rect x="76" y="400" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="76" y="400" width="268" height="62" rx="8" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="210.0" y="424.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">MariaDB</text>
+<text x="210.0" y="440.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">nextcloud database · internal</text>
+<rect x="362" y="400" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="362" y="400" width="268" height="62" rx="8" fill="rgba(120,53,15,0.32)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="496.0" y="424.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Netdata</text>
+<text x="496.0" y="440.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">metrics · :19999</text>
+<rect x="648" y="400" width="268" height="62" rx="8" fill="#0b1120"/>
+<rect x="648" y="400" width="268" height="62" rx="8" fill="rgba(120,53,15,0.32)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="782.0" y="424.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Portainer</text>
+<text x="782.0" y="440.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">stack management · :9000</text>
+<text x="76" y="494" text-anchor="start" font-size="9" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="600" letter-spacing="1">SYSTEMD · NOT IN DOCKER</text>
+<rect x="76" y="506" width="268" height="56" rx="8" fill="#0b1120"/>
+<rect x="76" y="506" width="268" height="56" rx="8" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="210.0" y="527.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">hermes-gateway</text>
+<text x="210.0" y="543.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">agent runtime · 127.0.0.1</text>
+<rect x="362" y="506" width="268" height="56" rx="8" fill="#0b1120"/>
+<rect x="362" y="506" width="268" height="56" rx="8" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="496.0" y="527.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">telegram-bot</text>
+<text x="496.0" y="543.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">allowlisted remote control</text>
+<rect x="648" y="506" width="268" height="56" rx="8" fill="#0b1120"/>
+<rect x="648" y="506" width="268" height="56" rx="8" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="782.0" y="527.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">ai-factory</text>
+<text x="782.0" y="543.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">agent UI · 127.0.0.1:8765</text>
+<rect x="972" y="196" width="200" height="150" rx="8" fill="#0b1120"/>
+<rect x="972" y="196" width="200" height="150" rx="8" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="1072.0" y="275.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Data disks</text>
+<text x="990" y="242" text-anchor="start" font-size="9" fill="#c4b5fd" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">disk A   431 GB</text>
+<text x="990" y="260" text-anchor="start" font-size="8" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">media library</text>
+<text x="990" y="290" text-anchor="start" font-size="9" fill="#c4b5fd" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">disk B   500 GB</text>
+<text x="990" y="308" text-anchor="start" font-size="8" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">nextcloud · git · backups</text>
+<rect x="972" y="364" width="200" height="92" rx="8" fill="#0b1120"/>
+<rect x="972" y="364" width="200" height="92" rx="8" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="1072.0" y="403.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Backups</text>
+<text x="1072.0" y="419.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">20:00 · separate physical disk</text>
+<rect x="972" y="474" width="200" height="92" rx="8" fill="#0b1120"/>
+<rect x="972" y="474" width="200" height="92" rx="8" fill="rgba(8,51,68,0.42)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="1072.0" y="513.0" text-anchor="middle" font-size="12" fill="#e2e8f0" font-family="ui-monospace,Menlo,monospace">Cron alerting</text>
+<text x="1072.0" y="529.0" text-anchor="middle" font-size="8.5" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace">7 jobs · Telegram on change</text>
+<path d="M 140 156 L 140 196" fill="none" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="148" y="182" text-anchor="start" font-size="8" fill="#fb7185" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">tailnet</text>
+<path d="M 328 156 L 328 196" fill="none" stroke="#475569" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="336" y="182" text-anchor="start" font-size="8" fill="#94a3b8" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">LAN</text>
+<path d="M 530 156 L 530 180" fill="none" stroke="#fb7185" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4,4"/>
+<g stroke="#fb7185" stroke-width="2"><line x1="520" y1="184" x2="540" y2="200"/><line x1="540" y1="184" x2="520" y2="200"/></g>
+<text x="548" y="196" text-anchor="start" font-size="8" fill="#fb7185" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">blocked at router</text>
+<path d="M 814 156 L 814 196" fill="none" stroke="#fb7185" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="822" y="182" text-anchor="start" font-size="8" fill="#fb7185" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">ssh · 19999 · 9000</text>
+<path d="M 916 520 L 1000 156" fill="none" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrowC)" stroke-dasharray="3,4"/>
+<text x="924" y="340" text-anchor="start" font-size="8" fill="#22d3ee" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">outbound</text>
+<path d="M 940 300 L 972 270" fill="none" stroke="#a78bfa" stroke-width="1.2" marker-end="url(#arrowV)"/>
+<text x="56" y="646" text-anchor="start" font-size="9" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="700" letter-spacing="2">ACCESS MODEL</text>
+<rect x="56" y="660" width="10" height="10" rx="2" fill="none" stroke="#fb7185" stroke-width="1.5"/>
+<text x="74" y="669" text-anchor="start" font-size="9" fill="#cbd5e1" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">tailnet</text>
+<text x="74" y="684" text-anchor="start" font-size="8" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">device-auth only</text>
+<rect x="286" y="660" width="10" height="10" rx="2" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="304" y="669" text-anchor="start" font-size="9" fill="#cbd5e1" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">LAN</text>
+<text x="304" y="684" text-anchor="start" font-size="8" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">same physical network</text>
+<rect x="516" y="660" width="10" height="10" rx="2" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="534" y="669" text-anchor="start" font-size="9" fill="#cbd5e1" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">loopback</text>
+<text x="534" y="684" text-anchor="start" font-size="8" fill="#64748b" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">host only</text>
+<line x1="56" y1="708" x2="1156" y2="708" stroke="#1e293b"/>
+<text x="56" y="730" text-anchor="start" font-size="9" fill="#475569" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">No router port-forward · no public DNS · no edge reverse proxy</text>
+<text x="56" y="748" text-anchor="start" font-size="9" fill="#475569" font-family="ui-monospace,Menlo,monospace" font-weight="400" letter-spacing="0">Runbooks: docs/architecture.md · docs/network.md</text>
+</svg>

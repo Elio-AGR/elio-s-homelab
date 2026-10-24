@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>homelab — one box, nine services, zero open ports</title>
+<meta name="description" content="Architecture, network model, monitoring, backups and incident log for a self-hosted Debian server running nine containers and four systemd services behind Tailscale.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23020617'/><text x='50' y='68' font-size='52' font-family='monospace' fill='%2322d3ee' text-anchor='middle'>H</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">H</span>
+      <span class="brand-text">homelab<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#architecture">Architecture</a>
+      <a href="#services">Services</a>
+      <a href="#network">Network</a>
+      <a href="#reliability">Reliability</a>
+      <a href="#incidents">Incidents</a>
+      <a href="#security">Security</a>
+    </nav>
+    <div class="nav-actions">
+      <span class="status-pill"><span class="pulse"></span>operational</span>
+      <a class="btn btn-ghost" href="../README.md">README</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span>self-hosted · debian 13 · tailscale</p>
+      <h1>One box.<br>Nine services.<br><span class="grad">Zero open ports.</span></h1>
+      <p class="lede">
+        Documentation for a home server that runs my own git, files, media and metrics —
+        how it is isolated, how it is monitored, how it is backed up, and what happened
+        the three times it broke.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#architecture">Explore the architecture</a>
+        <a class="btn btn-ghost" href="#incidents">Read the incident log</a>
+      </div>
+      <dl class="stats" id="stats">
+        <div><dt>containers</dt><dd data-count="9">0</dd></div>
+        <div><dt>systemd units</dt><dd data-count="4">0</dd></div>
+        <div><dt>monitors</dt><dd data-count="6">0</dd></div>
+        <div><dt>public ports</dt><dd data-count="0">0</dd></div>
+        <div><dt>backup RPO</dt><dd>24<span class="unit">h</span></dd></div>
+      </dl>
+    </div>
+
+    <aside class="hero-panel" aria-label="Operations quick reference">
+      <div class="panel-head">
+        <span class="dot dot-red"></span><span class="dot dot-amber"></span><span class="dot dot-green"></span>
+        <span class="panel-title">~/homelab</span>
+      </div>
+      <pre class="terminal"><code><span class="t-prompt">$</span> make audit
+<span class="t-dim"># live port + exposure matrix</span>
+<span class="t-prompt">$</span> make health
+<span class="t-dim"># containers, endpoints, load</span>
+<span class="t-prompt">$</span> make serve
+<span class="t-dim"># this page, no build step</span>
+
+<span class="t-prompt">$</span> systemctl --user list-timers
+<span class="t-ok">banner-tracker   09:00  daily sync</span>
+<span class="t-ok">backup.timer     20:00  nightly</span>
+<span class="t-dim">4 units · 7 cron jobs · 0 public ports</span></code></pre>
+      <div class="panel-foot">
+        <span class="mono">uptime</span>
+        <span class="mono ok" id="uptime">checking…</span>
+      </div>
+    </aside>
+  </section>
+
+  <section class="wrap section" id="architecture">
+    <div class="section-head">
+      <span class="sec-num">01</span>
+      <h2>Architecture</h2>
+      <p>Three planes: data in containers, control in systemd, access through a private mesh.</p>
+    </div>
+    <figure class="diagram">
+      <img src="assets/architecture.svg" alt="Diagram: phone and laptop reach the host over Tailscale or the LAN; an internet scanner is blocked at the router; the host runs Gitea, Nextcloud, MariaDB, Jellyfin, Uptime Kuma, Netdata, Portainer, a dashboard, a healthcheck endpoint and three systemd services." loading="lazy" width="1200" height="780">
+      <figcaption>
+        <span>Sanitized topology. Hostnames, IPs and credentials replaced with placeholders.</span>
+        <a class="link-arrow" href="../docs/architecture.md">Full breakdown</a>
+      </figcaption>
+    </figure>
+    <div class="tier-grid">
+      <article class="tier">
+        <span class="tier-tag tailnet">tailnet</span>
+        <h3>Identity, not geography</h3>
+        <p>WireGuard peers authenticated per device. SSH, Netdata and Portainer live here and nowhere else.</p>
+      </article>
+      <article class="tier">
+        <span class="tier-tag lan">LAN</span>
+        <h3>Convenience, contained</h3>
+        <p>Six services answer on the local network only. No forward, no DNS record, verified from outside.</p>
+      </article>
+      <article class="tier">
+        <span class="tier-tag loopback">loopback</span>
+        <h3>Never leaves the host</h3>
+        <p>Agent runtime and its dashboard bind to 127.0.0.1. The bot only makes outbound calls.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section" id="services">
+    <div class="section-head">
+      <span class="sec-num">02</span>
+      <h2>Service inventory</h2>
+      <p>Nine containers, four systemd units. One job each, one mount each, no shared state.</p>
+    </div>
+    <div class="filters" id="filters" role="tablist" aria-label="Filter services"></div>
+    <div class="service-grid" id="service-grid"></div>
+  </section>
+
+  <section class="wrap section" id="network">
+    <div class="section-head">
+      <span class="sec-num">03</span>
+      <h2>Network and exposure</h2>
+      <p>Every listening socket, what it is, and who can actually reach it.</p>
+    </div>
+    <div class="port-wrap">
+      <table class="ports">
+        <thead><tr><th>Port</th><th>Service</th><th>Bind</th><th>Scope</th></tr></thead>
+        <tbody id="port-body"></tbody>
+      </table>
+    </div>
+    <div class="note-row">
+      <div class="note">
+        <h3>Why Tailscale instead of a port-forward</h3>
+        <p>A forward exposes every service to every scanner on the internet, and one unpatched app is the whole box. A private mesh moves the trust boundary to device identity — a much smaller thing to defend, and it works behind CGNAT.</p>
+      </div>
+      <div class="note">
+        <h3>How isolation is verified</h3>
+        <p><code>make audit</code> regenerates the matrix from the live host. Reachability was then tested from a second LAN device and from a mobile connection outside it: the six LAN ports time out, no route.</p>
+      </div>
+    </div>
+    <p class="fine">Last verified 2026-10-24 · <code>ss -ltnp</code> + external TCP probe · <a class="link-arrow" href="../docs/network.md">docs/network.md</a></p>
+  </section>
+
+  <section class="wrap section" id="reliability">
+    <div class="section-head">
+      <span class="sec-num">04</span>
+      <h2>Reliability</h2>
+      <p>Six HTTP probes, seven cron jobs, one nightly backup to a different physical disk.</p>
+    </div>
+    <div class="two-col">
+      <div class="card list-card">
+        <h3>Schedule</h3>
+        <ul class="timeline" id="cron"></ul>
+      </div>
+      <div class="card list-card">
+        <h3>Backup pipeline</h3>
+        <ol class="steps" id="backup-steps"></ol>
+      </div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><span class="metric-k">RPO</span><span class="metric-v">24 h</span><span class="metric-n">worst case, nightly archive</span></div>
+      <div class="metric"><span class="metric-k">RTO</span><span class="metric-v">~30 min</span><span class="metric-n">same hardware, scripted restore</span></div>
+      <div class="metric"><span class="metric-k">Alert path</span><span class="metric-v">Telegram</span><span class="metric-n">down and recovered, not just down</span></div>
+      <div class="metric"><span class="metric-k">Known gap</span><span class="metric-v">no off-site</span><span class="metric-n">one house fire from zero copies</span></div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="incidents">
+    <div class="section-head">
+      <span class="sec-num">05</span>
+      <h2>Incident log</h2>
+      <p>The failures are the documentation. Three entries, written from the monitoring database.</p>
+    </div>
+    <div class="incident-grid" id="incidents-list"></div>
+    <p class="fine"><a class="link-arrow" href="../docs/incidents.md">Read the full write-ups</a></p>
+  </section>
+
+  <section class="wrap section" id="security">
+    <div class="section-head">
+      <span class="sec-num">06</span>
+      <h2>Security posture</h2>
+      <p>What the threat model assumes, what was found during the sanitization pass, and what is still open.</p>
+    </div>
+    <div class="two-col sec-col">
+      <div class="findings" id="findings"></div>
+      <div class="card checklist-card">
+        <h3>Hardening checklist</h3>
+        <div class="progress"><span id="progress-bar"></span></div>
+        <p class="progress-label"><span id="progress-done">0</span> of <span id="progress-total">0</span> done</p>
+        <ul class="checklist" id="checklist"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <span class="brand-text">homelab<span class="brand-dot">.</span></span>
+      <p class="fine">Sanitized configs, real runbooks. Secrets, hostnames and IDs are placeholders.</p>
+    </div>
+    <div class="footer-links">
+      <a href="../README.md">README</a>
+      <a href="../docs/architecture.md">Architecture</a>
+      <a href="../docs/network.md">Network</a>
+      <a href="../docs/runbook-backup.md">Backup</a>
+      <a href="../docs/security.md">Security</a>
+      <a href="../LICENSE">MIT</a>
+    </div>
+  </div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

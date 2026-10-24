@@ -1,0 +1,20 @@
+name: gitea
+
+services:
+  gitea:
+    image: gitea/gitea:latest   # pin a digest for reproducible updates
+    container_name: gitea
+    restart: always
+    ports:
+      - "${LAN_BIND:-0.0.0.0}:3000:3000"
+      - "${LAN_BIND:-0.0.0.0}:222:22"
+    volumes:
+      - ${DATA_DIR:-/srv/data}/gitea:/data
+    environment:
+      USER=git
+      GITEA_CUSTOM=/data/gitea
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/api/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

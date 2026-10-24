@@ -1,0 +1,16 @@
+[Unit]
+Description=AI Software Factory - local dashboard
+After=network-online.target
+
+[Service]
+Type=simple
+User=elio
+WorkingDirectory=%h
+ExecStart=%h/Projects/AI-Software-Factory/ai-factory/.venv/bin/python3 \
+  -m ai_factory dashboard --workspace %h/Projects --port 8765
+Restart=on-failure
+RestartSec=5
+# Bound to loopback on purpose; reachable through Tailscale Serve, never the LAN.
+
+[Install]
+WantedBy=default.target

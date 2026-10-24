@@ -1,0 +1,25 @@
+[Unit]
+Description=Telegram bot - remote control for the homelab
+Documentation=https://github.com/Elio-AGR/homelab
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=elio
+WorkingDirectory=%h/server-script
+EnvironmentFile=/etc/homelab/notify.env
+ExecStart=%h/server-script/venv/bin/python %h/server-script/telegram_bot.py
+Restart=always
+RestartSec=5
+# Hardening that does not break what the bot does
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectClock=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+RestrictSUIDSGID=yes
+RestrictNamespaces=yes
+
+[Install]
+WantedBy=multi-user.target

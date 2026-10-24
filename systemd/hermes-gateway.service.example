@@ -1,0 +1,17 @@
+[Unit]
+Description=Hermes agent gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=elio
+WorkingDirectory=%h/.hermes
+ExecStart=%h/.hermes/hermes-agent/.hermes/bin/hermes gateway run
+Restart=on-failure
+RestartSec=5
+# Loopback only: the agent API is never exposed to the LAN.
+Environment=HERMES_GATEWAY_HOST=127.0.0.1
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,13 @@
+name: healthcheck
+
+# Deliberately separate from the dashboard: a broken dashboard must not take
+# the health endpoint down with it.
+services:
+  healthcheck:
+    image: nginx:alpine
+    container_name: healthcheck
+    restart: unless-stopped
+    ports:
+      - "${LAN_BIND:-0.0.0.0}:8090:80"
+    volumes:
+      - ./html:/usr/share/nginx/html:ro

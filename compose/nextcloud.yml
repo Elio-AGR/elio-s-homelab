@@ -1,0 +1,36 @@
+name: nextcloud
+
+services:
+  db:
+    image: mariadb:10.11
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?set in .env}
+      MYSQL_DATABASE: ${DB_NAME:-nextcloud}
+      MYSQL_USER: ${DB_USER:-nextcloud}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set in .env}
+    volumes:
+      - ${DATA_DIR:-/srv/data}/nextcloud-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  nextcloud:
+    image: nextcloud:34
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${LAN_BIND:-0.0.0.0}:8080:80"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: ${DB_NAME:-nextcloud}
+      MYSQL_USER: ${DB_USER:-nextcloud}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set in .env}
+      TRUSTED_PROXIES: ""
+    volumes:
+      - ${DATA_DIR:-/srv/data}/nextcloud-app:/var/www/html
+      - ${MEDIA_DIR:-/srv/media}:/media:ro

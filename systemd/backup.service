@@ -1,0 +1,15 @@
+[Unit]
+Description=Homelab nightly backup
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=elio
+EnvironmentFile=/etc/homelab/notify.env
+EnvironmentFile=-/etc/homelab/backup.env
+ExecStart=%h/homelab/scripts/backup.sh
+Nice=10
+IOSchedulingClass=idle
+# A failed backup is a failed unit: systemd keeps it visible in `systemctl --failed`
+# instead of burying it in a log line.

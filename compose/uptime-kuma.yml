@@ -1,0 +1,16 @@
+name: uptime-kuma
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - "${LAN_BIND:-0.0.0.0}:3001:3001"
+    volumes:
+      - ${DATA_DIR:-/srv/data}/uptime-kuma:/app/data
+    healthcheck:
+      test: ["CMD", "node", "extra/healthcheck.js"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
