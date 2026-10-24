@@ -263,7 +263,7 @@ function navState() {
    which publishes site/ alone. Rewrite them to blob URLs only when hosted there. */
 function fixDocLinks() {
   if (!location.hostname.endsWith("github.io")) return;
-  const repo = "https://github.com/Elio-AGR/homelab";
+  const repo = "https://github.com/Elio-AGR/elio-s-homelab";
   document.querySelectorAll('a[href^="../"]').forEach((a) => {
     const rel = a.getAttribute("href").replace(/^\.\.\//, "");
     a.setAttribute("href", `${repo}/blob/main/${rel}`);
