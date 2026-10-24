@@ -11,7 +11,7 @@ Configs here are sanitized copies of the live stack, not the live stack itself.
 [![ports](https://img.shields.io/badge/public%20ports-0-fb7185?style=flat-square)](#access-model)
 [![license](https://img.shields.io/badge/license-MIT-a78bfa?style=flat-square)](LICENSE)
 
-> A live, browsable version of this document: `make serve` → <http://127.0.0.1:8020>
+> A browsable version of this document: <http://127.0.0.1:8020/site/> (`make serve`)
 
 ![Architecture](site/assets/architecture.svg)
 
@@ -150,10 +150,14 @@ The interesting part of running a server is the failures. Three are written up i
 The UI is plain HTML/CSS/JS — no build step, no external requests:
 
 ```bash
-make serve          # http://127.0.0.1:8020
+make serve          # http://127.0.0.1:8020/site/
 make audit          # print the live port/exposure matrix
+make health         # containers, endpoints, load
 make backup         # run the backup script (needs .env)
 ```
+
+On the live host the UI is a systemd user unit (`systemd/homelab-site.service`), so it
+stays up at <http://127.0.0.1:8020/site/> without a terminal.
 
 To rebuild a similar box from scratch:
 

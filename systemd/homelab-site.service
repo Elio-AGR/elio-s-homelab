@@ -1,0 +1,15 @@
+[Unit]
+Description=Homelab portfolio site (static, read-only)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/Documents/Projects/homelab
+ExecStart=/usr/bin/python3 -m http.server 8020 --bind 127.0.0.1
+Restart=on-failure
+RestartSec=3
+# Serves the repo read-only on loopback: docs/, site/ and the architecture SVG
+# resolve with their relative links intact.
+
+[Install]
+WantedBy=default.target
