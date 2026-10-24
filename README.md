@@ -37,8 +37,14 @@ The UI is a static page in [`site/`](site/) — no build step, no external reque
 | **Overview** — headline, live stats, ops quick reference | **Inventory** — nine containers, four systemd units, filterable |
 | ![Port and exposure matrix](docs/img/03-ui-network.png) | ![Live host check](docs/img/04-live-host.png) |
 | **Exposure** — every listening socket and who can reach it | **Live host** — units active, containers up, audit output |
-| ![Telegram bot](docs/img/05-telegram.png) | |
-| **Remote control** — `/status` and `/df` answered by the allowlisted bot | |
+
+### Remote control
+
+The same box, operated from a phone through the allowlisted bot.
+
+| ![Bot /status](docs/img/05-telegram-status.png) | ![Bot /df](docs/img/06-telegram-df.png) | ![Backup notification](docs/img/07-telegram-backup.png) |
+|---|---|---|
+| **`/status`** — host, uptime, running containers | **`/df`** — disk usage per mount | **Backup** — size, path, timestamp |
 
 Screenshots were taken from the running host and then sanitized: the tailnet address is
 masked, and the page itself only ever renders placeholders.
