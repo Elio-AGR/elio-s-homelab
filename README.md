@@ -27,6 +27,20 @@ Configs here are sanitized copies of the live stack, not the live stack itself.
 | **Backups** | Nightly to a separate physical disk, plus a scripted restore path |
 | **Uptime** | ~1 day at snapshot time, after a full OS migration (see [incidents](docs/incidents.md)) |
 
+## Screenshots
+
+The UI is a static page in [`site/`](site/) — no build step, no external requests.
+
+| | |
+|---|---|
+| ![Portfolio UI hero](docs/img/01-ui-hero.png) | ![Service inventory](docs/img/02-ui-services.png) |
+| **Overview** — headline, live stats, ops quick reference | **Inventory** — nine containers, four systemd units, filterable |
+| ![Port and exposure matrix](docs/img/03-ui-network.png) | ![Live host check](docs/img/04-live-host.png) |
+| **Exposure** — every listening socket and who can reach it | **Live host** — units active, containers up, audit output |
+
+Screenshots were taken from the running host and then sanitized: the tailnet address is
+masked, and the page itself only ever renders placeholders.
+
 ## Service inventory
 
 Nine containers, one job each. Everything that holds state keeps it on a mounted disk,
